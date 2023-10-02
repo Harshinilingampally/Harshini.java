@@ -1,0 +1,24 @@
+class Solution {
+  private void noOfPermute(int [] nums,List<List<Integer>> answer,List<Integer> al,boolean [] freq){
+      if(al.size()==nums.length){
+          answer.add(new ArrayList<>(al));
+          return;
+      }
+      for(int i=0;i<nums.length;i++){
+          if(!freq[i]){
+              freq[i]=true;
+              al.add(nums[i]);
+              noOfPermute(nums,answer,al,freq);
+              al.remove(al.size()-1);
+              freq[i]=false;
+          }
+      }
+  }
+    public List<List<Integer>> permute(int[] nums) {
+     List<List<Integer>> answer=new ArrayList<>();
+     ArrayList<Integer> al=new ArrayList<>();
+     boolean [] freq = new boolean[nums.length];
+     noOfPermute(nums,answer,al,freq);
+     return answer; 
+    }
+}
