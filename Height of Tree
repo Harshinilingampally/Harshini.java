@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+class Node{
+    int data;
+    Node left,right;
+    Node(int data){
+        this.data=data;
+        this.left=this.right=null;
+    }
+}
+public class Main {
+  static Node insert(Node root,int key){
+      if(root==null) return new Node(key);
+      if(root.data>key){
+          root.left=insert(root.left,key);
+      }
+      else{
+          root.right=insert(root.right,key);
+      }
+
+      return root;
+    }
+  public  static int height(Node root){
+        if(root==null) return -1;
+        return Math.max(height(root.left),height(root.right))+1;
+    }
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+     while(T-->0){
+         int n=sc.nextInt();
+         Node root=null;
+         for(int i=0;i<n;i++){
+             int val=sc.nextInt();
+             root=insert(root,val);
+         }
+         System.out.println(height(root));
+     }
+    }
+}
