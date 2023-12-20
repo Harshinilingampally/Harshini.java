@@ -1,0 +1,20 @@
+class Solution {
+  
+  private boolean ps(TreeNode root,int result,int sum){
+      if(root==null) return false;
+     
+     if(root.right==null && root.left==null){
+         sum=sum+root.val;
+         if(sum==result)  return true;
+     }
+     boolean left=ps(root.left,result,sum+root.val);
+     boolean right=ps(root.right,result,sum+root.val);
+    return (left || right);
+     
+     
+  }
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        return ps(root,targetSum,0);
+
+}
+}
