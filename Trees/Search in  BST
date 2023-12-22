@@ -1,0 +1,18 @@
+class Solution {
+    private TreeNode searchingBST(TreeNode root, int key) {
+        if (root == null)
+            return null;
+        if (root.val > key) {
+            return searchingBST(root.left, key);
+        } else if (root.val < key) {
+            return searchingBST(root.right, key);
+        } else if (root.val == key) {
+            root.val = key;
+        }
+        return root;
+    }
+
+    public TreeNode searchBST(TreeNode root, int val) {
+        return searchingBST(root, val);
+    }
+}
