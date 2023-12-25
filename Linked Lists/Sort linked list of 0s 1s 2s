@@ -1,0 +1,33 @@
+public class Solution
+{
+    public static Node sortList(Node head) {
+       Node dummyHead0=new Node(-1);
+       Node dummyHead1=new Node(-1);  // creating dummyhead nodes to link the respective nodes
+       Node dummyHead2=new Node(-1);
+      Node zero=dummyHead0;
+      Node one=dummyHead1;          // creating pointer Nodes to keep track and to link
+      Node two=dummyHead2;
+      Node temp=head;
+       while(temp!=null){
+           if(temp.data==0){
+               zero.next=temp;
+               zero=temp;
+           }
+           else if(temp.data==1){
+               one.next=temp;
+               one=temp;
+           }
+           else{
+               two.next=temp;
+               two=temp;
+           }
+           temp=temp.next;
+       }
+       zero.next=(dummyHead1.next!=null)?dummyHead1.next:dummyHead2.next;
+       
+       one.next=dummyHead2.next;
+       two.next=null;
+       Node newHead=dummyHead0.next;
+       return newHead;
+    }
+}
