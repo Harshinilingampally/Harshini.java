@@ -1,0 +1,26 @@
+class Solution {
+    public ListNode sortList(ListNode head) {
+        int count=0;
+        ListNode node=head;
+        while(node!=null){
+            count++;
+            node=node.next;
+
+        }
+        int [] arr=new int[count];
+        node=head;
+        count=0;
+        while(node!=null){
+            arr[count++]=node.val;
+            node=node.next;
+        }
+        Arrays.sort(arr);
+        node=head;
+        count=0;
+        while(node!=null){
+            node.val=arr[count++];
+            node=node.next;
+        }
+        return head;
+    }
+}
