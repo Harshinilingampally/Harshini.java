@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+class TreeNode{
+    int data;
+    TreeNode right;
+    TreeNode left;
+    TreeNode(int data){
+        this.data=data;
+        this.right=this.left=null;
+    }
+}
+public class Main {
+     static int pos=0;
+  static TreeNode construct(int [] pre,int [] ino,int a,int b){
+       if(a>b){
+           return null;
+       }
+       int index=linearSearch(ino,pre[pos],a,b);
+       TreeNode root=new TreeNode(pre[pos]);
+       pos++;
+       root.left=construct(pre,ino,a,index-1);
+       root.right=construct(pre,ino,index+1,b);
+       return root;
+   }
+    static void postOrder(TreeNode root){
+        if(root==null) return ;
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data +" ");
+    } 
+    static int linearSearch(int [] ino,int val,int a,int b){
+         for(int i=a;i<=b;i++){
+            if(ino[i]==val){
+                return i;
+            }
+         }
+         return -1;
+    }
+    public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int T=sc.nextInt();
+    while(T-->0){
+        int N=sc.nextInt();
+        int [] pre=new int[N];
+        for(int i=0;i<N;i++){
+            pre[i]=sc.nextInt();
+        }
+        int [] ino=new int[N];
+        for(int i=0;i<N;i++){
+            ino[i]=sc.nextInt();
+        }
+        pos=0;
+        TreeNode root=construct(pre,ino,0,N-1);
+         postOrder(root);
+         System.out.println();
+
+    }
+    }
+}
