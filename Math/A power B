@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            long A=sc.nextInt();
+            long B=sc.nextInt();
+            long res=1;
+            int n=1000000007;
+            while(B!=0){
+           if((B & 1)!=0){
+               res=(res %n * A %n)%n;
+           } 
+             A=(A % n*A %n)%n;
+             B=B>>1;
+
+            }
+          System.out.println(res);
+
+                    }
+        
+    }
+}
