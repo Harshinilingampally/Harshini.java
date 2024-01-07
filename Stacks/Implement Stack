@@ -1,0 +1,54 @@
+/*
+Implement the Stack data structure and perform push / pop operations.
+Note:
+Do not use any inbuilt functions / libraries for the Stack.
+Input Format
+The first line of input contains T - number of operations. It is followed by T lines, each line contains either "push x" or "pop".
+Output Format
+For each "pop" operation, print the popped element, separated by a newline. If the stack is empty, print "Empty".
+*/
+
+import java.io.*;
+import java.util.*;
+    class Stack{
+    int [] arr;
+    int top;
+    Stack(int n){
+    arr=new int[n];
+        top=-1;
+    } 
+    void push(int x){
+        arr[++top]=x;
+
+    }
+      int pop(){
+      if(top==-1)
+        return Integer.MIN_VALUE;
+           return arr[top--];
+      }
+}
+     public class Main {
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+    Stack stack=new Stack(T);
+     while(T-->0){
+      String str=sc.next();
+      if(str.equals("push")){
+          int x=sc.nextInt();
+          stack.push(x);
+      }
+      else if(str.equals("pop")){
+         int check= stack.pop();
+         if(check==Integer.MIN_VALUE){
+             System.out.println("Empty");
+         }
+         else{
+             System.out.println(check);
+         }
+      }
+      }
+      
+      }
+
+     }
