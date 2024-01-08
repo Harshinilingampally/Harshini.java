@@ -1,0 +1,40 @@
+/*
+Implement Bubble Sort and print the total number of swaps involved to sort the array.
+Input Format
+The first line of input contains T - the number of test cases. It's followed by 2T lines. The first line of each test case contains N - the size of the array. The next line contains N integers - the elements of the array.
+Output Format
+For each test case, print the total number of swaps, separated by a new line.
+*/
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int T=sc.nextInt();
+      while(T-->0){
+    int N=sc.nextInt();
+    int [] arr=new int[N];
+     int count=0;
+    for(int i=0;i<N;i++){
+        arr[i]=sc.nextInt();
+    }
+     for(int i=0;i<N;i++){
+         for(int j=0;j<N-1-i;j++){
+            
+             if(arr[j] > arr[j+1]){
+                 int temp=arr[j];
+                 arr[j]=arr[j+1];
+                 arr[j+1]=temp;
+                  count++;
+             }
+             
+         }
+        
+      }
+      System.out.println(count);
+    } 
+  }
+}
