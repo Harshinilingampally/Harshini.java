@@ -1,0 +1,34 @@
+/*Given 2 numbers, find their LCM and HCF.
+Note: Do not use any inbuilt functions / libraries for your main logic. Read about the Euclid Algorithm to solve the problem.
+Input Format
+The first line of input contains T - the number of test cases. It's followed by T lines, each containing 2 numbers A and B.
+Output Format
+For each test case, print their LCM and HCF separated by space, separated by a new line.
+*/
+
+import java.io.*;
+import java.util.*;
+public class Main {
+  public static long gcd(long A,long B){
+      if(B==0){
+          return A;
+      }
+      else{
+        return  gcd(B,A%B);
+      }
+  }
+   public static long lcm(long A,long B,long gcdvalue){
+        return Math.abs(A*B)/gcdvalue ;
+     }
+    public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int T=sc.nextInt();
+    while(T-->0){
+        long A=sc.nextLong();
+        long B=sc.nextLong();
+       long gcdvalue=gcd(A,B);
+        System.out.print(lcm(A,B,gcdvalue));
+        System.out.println(" "+ gcdvalue);
+    } 
+    }
+}
