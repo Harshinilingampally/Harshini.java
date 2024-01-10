@@ -1,0 +1,49 @@
+/*
+You are given an array of 0's and 1's. Sort the array in ascending order and print it.
+Note:
+Solve using two-pointer technique.
+Input Format
+The first line of input contains T - the number of test cases. It's followed by 2T lines, the first line contains N - the size of the array. The second line contains the elements of the array.
+Output Format
+For each test case, sort the array in ascending order and print it in a new line.
+*/
+import java.io.*;
+import java.util.*;
+public class Main {
+   static void sortZerosOnes(int [] arr,int N){
+        int p1=0,p2=N-1;
+        if(p1==p2){
+            return;
+        }
+        while(p1<p2){
+            if(arr[p1]==0){
+                p1++;
+            }
+            else if(arr[p2]==1){
+                p2--;
+            }
+            else{
+                int temp=arr[p1];
+                arr[p1]=arr[p2];
+                arr[p2]=temp;
+            }
+        }
+    }
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int T=sc.nextInt();
+      while(T-->0){
+      int N=sc.nextInt();
+      int [] arr=new int[N];
+      for(int i=0;i<N;i++){
+          arr[i]=sc.nextInt();
+      }
+       sortZerosOnes(arr,N);
+           for(int items:arr){
+           System.out.print(items + " ");
+       }
+       System.out.println("\n");
+       
+      }
+}
+}
