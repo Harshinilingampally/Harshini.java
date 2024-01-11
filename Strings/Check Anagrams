@@ -1,0 +1,24 @@
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            String str1=sc.next();
+            String str2=sc.next();
+            char [] ArrayS1=str1.toCharArray();
+            char [] ArrayS2=str2.toCharArray();
+            Arrays.sort(ArrayS1);
+            Arrays.sort(ArrayS2);
+            boolean flag=Arrays.equals(ArrayS2,ArrayS1);
+            if(flag){
+                System.out.println("True");
+            }
+            else{
+             System.out.println("False");
+            }
+        }
+    }
+}
