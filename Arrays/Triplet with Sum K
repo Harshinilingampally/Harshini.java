@@ -1,0 +1,49 @@
+/**
+You are given an integer array and a positive integer K. You have to tell if there exists i,j,k in the given array such that ar[i]+ar[j]+ar[k]=K, i≠j≠k.
+Input Format
+The first line of input contains T - the number of test cases. Its followed by 2T lines, the first line contains N and K - the size of the array and the number K. The second line contains the elements of the array.
+Output Format
+For each test case, print "true" if the arrays contains such elements, false otherwise, separated by new line.
+**/
+
+import java.io.*;
+import java.util.*;
+import java.util.HashSet;
+public class Main {
+    public static boolean tripletSum(int [] arr,int N,int sum){
+        for(int i=0;i<N-2;i++){
+         HashSet<Integer> hs=new HashSet<Integer>();
+            int cur_val=sum-arr[i];
+            for(int j=i+1;j<N;j++){
+                int req_val=cur_val-arr[j];
+                if(hs.contains(req_val)){
+                    return true;
+                }
+                else{
+                    hs.add(arr[j]);
+                }
+            }
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+        int N=sc.nextInt();int K=sc.nextInt();
+        int [] arr=new int[N];
+        for(int i=0;i<N;i++){
+            arr[i]=sc.nextInt();
+        }
+       boolean flag=tripletSum(arr,N,K);
+            if(flag){
+                System.out.println("true");
+            }
+            else{
+                System.out.println("false");
+            }
+
+
+        }
+    }
+}
