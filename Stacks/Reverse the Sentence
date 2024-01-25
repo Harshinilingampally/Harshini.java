@@ -1,0 +1,50 @@
+/*
+Given a sentence, reverse the entire sentence word-by-word.
+Note:
+Solve using stack or in-place swap. Do not simply scan, split and print in reverse order.
+*/
+import java.io.*;
+import java.util.*;
+class Stack{
+    char arr[];
+    int top;
+    Stack(int N){
+        arr=new char[N];
+        top=-1;
+    }
+    void push(char x){
+        arr[++top]=x;
+    }
+    char pop(){
+            return arr[top--];
+        }
+   }
+ public class Main {
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+     sc.nextLine();
+     
+     while(T-->0){
+      String S=sc.nextLine();
+       char [] arr=S.toCharArray();
+     Stack stack=new Stack(arr.length);
+      for(int i=arr.length-1;i>=0;i--){
+          if(arr[i]!=' '){
+              stack.push(arr[i]);
+          }
+          else{
+              while(stack.top!=-1){
+              System.out.print(stack.pop());
+              }
+              System.out.print(" ");
+          }
+      }
+        while(stack.top!=-1){
+        System.out.print(stack.pop());
+  
+        }
+        System.out.println();
+     }
+    }
+}
