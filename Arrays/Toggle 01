@@ -1,0 +1,68 @@
+/***
+Consider an array of 0's of size N. You are given Q queries of the following types:
+1 idx: Toggle the element present at the given index. If the element is 0, make it 1 and vice versa.
+2 idx: Print the distance of the nearest 1 from the given index.
+Input Format
+The first line of input contains T - the number of test cases. It is followed by 2T lines, the first line contains N - the size of the array and Q - the number of queries, separated by a space.
+The Q subsequent lines contain two integers K - the type of the query and i - an index in the array.
+Output Format
+For each test case, process the queries and for each query of type 2, print the result separated by a newline.
+For queries of type 2, if such an element is not found, print -1.
+***/
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+     while(T-->0){
+         int N=sc.nextInt();
+         int Q=sc.nextInt();
+         int [] arr=new int[N];
+             Arrays.fill(arr,0);
+         while(Q-->0){
+             int K=sc.nextInt();
+             int index=sc.nextInt();
+             ;
+             if(K==1){
+              arr[index]=1-arr[index];
+             }
+             else{
+                 if(arr[index]==1){
+                     System.out.println("0");
+                 }
+                 else{
+                    int distance =findDistanceOfOne(arr,index);
+                    System.out.println(distance);
+
+                 }
+             }
+         }
+     }
+  }
+     public static int findDistanceOfOne(int [] arr,int index){
+         int left=index;
+         int right=index;
+         while(left>=0 && arr[left]==0){
+             left--;
+         }
+         while(right<arr.length && arr[right]==0){
+             right++;
+         }
+         if(left>=0 && right<arr.length){
+             int leftDistance=index-left;
+             int rightDistance=right-index;
+             return Math.min(leftDistance,rightDistance);
+         }
+         else if(left>=0){
+             return index-left;
+         }
+         else if(right<arr.length){
+             return right-index;
+         }
+         else{
+             return -1;
+         }
+
+     }
+}
