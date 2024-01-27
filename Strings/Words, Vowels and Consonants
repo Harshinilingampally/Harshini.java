@@ -1,0 +1,64 @@
+/***
+Given a sentence containing only uppercase/lowercase english alphabets and spaces, you have to count the number of words, vowels and consonants.
+Input Format
+
+The first line of input contains T - number of test cases. It's followed by T lines, each line contains a single sentence.
+
+Output Format
+
+For each test case, print the number of words, vowels and consonants, separated by newline.
+***/
+import java.io.*;
+import java.util.*;
+import java.util.StringTokenizer;
+
+public class Main {
+     public static int noOfWords(String str){
+     int count1=0;
+     boolean wordOcuured=false;
+    for(int i=0;i<str.length();i++){
+        char ch=str.charAt(i);
+        if(Character.isWhitespace(ch)){
+            wordOcuured=false;
+        }
+      else{
+          if(!wordOcuured){
+              count1++;
+              wordOcuured=true;
+          }
+      }
+    }
+    return count1;
+ }
+ public static int vowels(String str){
+     int count2=0;
+     for(int i=0;i<str.length();i++){
+         char ch=Character.toLowerCase(str.charAt(i));
+     if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' ){
+        count2++;
+ }
+ }
+ return count2;
+ }
+  public static int consonants(String str){
+     int count3=0;
+     for(int i=0;i<str.length();i++){
+         char ch=Character.toLowerCase(str.charAt(i));
+     if(Character.isLetter(ch)&& !(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u' )){
+        count3++;
+ }
+ }
+ return count3;
+ }
+    public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    int T=sc.nextInt();
+    sc.nextLine();
+    while(T-->0){
+        String str=sc.nextLine();
+        System.out.println(noOfWords(str)+ " "+vowels(str)+" "+consonants(str));
+    }
+    sc.close();
+    System.out.println();
+    }
+}
