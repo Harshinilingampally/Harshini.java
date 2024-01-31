@@ -1,0 +1,41 @@
+Input Format
+
+The first line of input contains T - the number of test cases. It's followed by T lines, each line contains a single string of characters.
+
+Output Format
+
+For each test case, print the first repeating character, separated by a new line. If there are none, print '.'.
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int T=sc.nextInt();
+      while(T-->0){
+         String str=sc.next();
+         char [] ArrayS=str.toCharArray();
+         int N=ArrayS.length;
+         HashMap<Character,Integer> hm=new HashMap<Character,Integer>();
+         for(int i=0;i<N;i++){
+             if(hm.containsKey(ArrayS[i])){
+               hm.put(ArrayS[i],hm.get(ArrayS[i])+1);
+             }
+             else{
+             hm.put(ArrayS[i],1);
+             }
+         }
+         boolean found=false;
+           for(int i=0;i<N;i++){
+             if(hm.get(ArrayS[i])>=2){
+                 System.out.println(ArrayS[i]);
+                 found=true;
+                 break;
+             }
+           }
+            if(!found){
+                System.out.println(".");
+            }
+      }
+    }
+}
