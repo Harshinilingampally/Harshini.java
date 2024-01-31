@@ -1,0 +1,24 @@
+// ARRAYLIST APPROACH
+
+class MyStack {
+    public ArrayList<Integer> stack;
+    public MyStack() {
+      this.arr = new ArrayList<Integer>();    
+    }
+    public void push(int x) {
+        this.arr.add(x);
+    }
+    
+    public int pop() {
+        return this.arr.remove(this.stack.size() - 1);
+    }
+    
+    public int top() {
+        return this.arr.get(this.stack.size() - 1);
+    }
+    
+    public boolean empty() {
+        return this.arr.size() == 0 ? true : false;
+    }
+}
+
