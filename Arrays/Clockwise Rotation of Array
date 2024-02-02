@@ -1,0 +1,40 @@
+/**
+Given an array, rotate it by K times in a clockwise direction.
+Note:
+Try to solve it by doing an in-place rotation and then print the rotated array.
+**/
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static void reverseArray(int arr[], int lo, int hi){
+        while(lo < hi) {
+            int temp=arr[lo];
+            arr[lo]=arr[hi];
+            arr[hi]=temp;
+            lo++;
+            hi--;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int K=sc.nextInt();
+            int [] arr=new int[N];
+            for(int i=0;i<N;i++){
+                arr[i]=sc.nextInt();
+            }
+            reverseArray(arr, 0, N-1);
+            K = K%N;
+            reverseArray(arr, 0, K-1);
+            reverseArray(arr, K, N-1);
+            for(int i=0;i<N;i++){
+                System.out.print(arr[i]+" ");
+            }
+            System.out.println();
+        }
+  }
+}
