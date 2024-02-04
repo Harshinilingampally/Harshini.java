@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+     	Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0){
+            String str1 = sc.next();
+            String str2 = sc.next();
+            HashMap<Character, Integer> hm1 = new HashMap<>();
+            HashMap<Character, Integer> hm2 = new HashMap<>();
+
+            for (int i = 0; i < str1.length(); i++) {
+                char ch1 = str1.charAt(i);
+                hm1.put(ch1, hm1.getOrDefault(ch1, 0) + 1);
+            }
+
+            for (int i = 0; i < str2.length(); i++) {
+                char ch2 = str2.charAt(i);
+                hm2.put(ch2, hm2.getOrDefault(ch2, 0) + 1);
+            }
+
+            int count = 0;
+
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                int count1 = hm1.getOrDefault(ch, 0);
+                int count2 = hm2.getOrDefault(ch, 0);
+
+                while (count1 != count2) {
+                    count++;
+                    if (count1 > count2) {
+                        count2++;
+                    } else {
+                        count1++;
+                    }
+                }
+            }
+            System.out.println(count);
+        }
+    }
+    
+}
