@@ -1,0 +1,35 @@
+/**
+Given an array, number to search (say e1), and occurrence (say n), print the index of the nth occurrence of e1 in the array.
+
+If e1 does not occur n times, then print the index as -1.
+**/
+import java.io.*;
+import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int [] arr=new int[n];
+           for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int number=sc.nextInt();
+        int frequency=sc.nextInt();
+     
+        int count=0;
+        boolean found=false;
+        for(int i=0;i<n;i++){
+            if(arr[i]==number){
+                count++;
+            }
+            if(count==frequency){
+                found=true;
+                System.out.println(i);
+                break;
+            }
+        }
+        if(found==false){
+            System.out.println("-1");
+        }
+    }
+}
