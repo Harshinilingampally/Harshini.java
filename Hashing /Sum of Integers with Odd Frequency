@@ -1,0 +1,39 @@
+/**
+An array of integers arr is given as input and the sum of elements having odd frequency is found and produced as output.
+This means elements which repeat an odd number of times in the given array will be identified and the sum of these will be the expected output.
+For example,
+consider an array arr = {1, 2, 4, 5, 6, 3, 1, 2, 3, 3}
+Here, elements 1 and 2 repeats twice (even), whereas elements 4, 5, 6 are present only once (odd) and element 3 occurs thrice (odd).
+Hence, Elements having odd frequency : {4, 5, 6, 3, 3, 3}
+Sum of elements having odd frequency: 24
+**/
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String line=sc.nextLine();
+        String [] parts=line.split(" ");
+        int n=parts.length;
+        int [] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=Integer.parseInt(parts[i]);
+            
+        }
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int i=0;i<n;i++){
+            int val=arr[i]; 
+         hm.put(val,hm.getOrDefault(val,0)+1);
+        }
+       int sum = 0;
+        for (Map.Entry<Integer, Integer> entry : hm.entrySet()) {
+            if (entry.getValue() % 2 != 0) {
+                sum += entry.getKey() * entry.getValue();
+            }
+        }
+        System.out.println(sum);
+    }
+}
