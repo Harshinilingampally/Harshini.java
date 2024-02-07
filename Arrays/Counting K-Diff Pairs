@@ -1,0 +1,38 @@
+/**
+Given an array of integers and an integer k, You need to find and count K-diff pairs in an array?
+
+Here a K-diff pair is defined as an integer pair (i, j), where i and j are both numbers in the array and their difference is k.
+
+Implement the following function:
+
+int countPairsWithDiffK(int arr[],int k);
+
+The function accepts an array of integers and one integer number 'K'. Implement the function to count K-diff pairs in an array.
+**/
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int [] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int k=sc.nextInt();
+        int count=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(Math.abs(arr[j]-arr[i])==k){
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
+    }
+}
