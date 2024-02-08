@@ -1,0 +1,54 @@
+/**
+Given a set of non-negative integers, and a value S, determine if there is a subset of the given set with sum equal to S.
+Input Format
+
+The first line of the input contains T - the number of test cases. It is followed by 2T lines - the first line of each test case contains N - number of elements in given array and S - the required sum. The second line contains elements of the array.
+
+Output Format
+
+For each test case, print "YES" if there is a subset of the given set with sum equal to given S, otherwise "NO", separated by new line .
+**/
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    static boolean subSetSum(int [] arr,int sum,int index,List<Integer> ans){
+        if(index==arr.length){
+        if(sum==0){
+            return true;
+        }
+        else{
+            return false;
+        }
+        }
+
+        if(arr[index]<=sum){
+            ans.add(arr[index]);
+        if(subSetSum(arr,sum-arr[index],index+1,ans)==true){
+            return true;
+        }
+        
+             ans.remove(ans.size()-1);
+        }
+            return subSetSum(arr,sum,index+1,ans);
+    }
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+     while(T-->0){
+         int N=sc.nextInt();
+         int sum=sc.nextInt();
+        int [] arr=new int[N];
+        for(int i=0;i<N;i++){
+            arr[i]=sc.nextInt();
+        }
+        List<Integer> ans=new ArrayList<>();
+
+      if(subSetSum(arr,sum,0,ans)==true)
+       System.out.println("YES");
+       else
+       System.out.println("NO");
+
+     }
+    }
+}
