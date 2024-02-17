@@ -1,0 +1,21 @@
+// Approach Using Stack and StringBuilder 
+class Solution {
+    public String reverseWords(String s) {
+    Stack<String> stack=new Stack<>();
+    String [] str=s.split(" "); // split string s words by words and store in array of strings
+    StringBuilder SB=new StringBuilder();
+     for(int i=0;i<str.length;i++){
+         if(str[i].isEmpty()){
+             continue;
+         }
+         stack.push(str[i]);
+         
+     }
+     while(!stack.isEmpty()){
+         SB.append(stack.pop());
+         SB.append(" ");
+     }
+     
+     return SB.toString().trim();
+    }
+}
