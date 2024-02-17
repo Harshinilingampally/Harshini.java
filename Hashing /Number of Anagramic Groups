@@ -1,0 +1,33 @@
+/**
+You are given N strings of length M, count the number of anagramic groups. An anagramic group is a list of strings which are anagrams of each other.
+Input Format
+
+The first line of input contains T - the number of test cases. In each test case, the first line contains N - the number of strings and M - the length of each string, separated by a space. The N subsequent lines each contain a string of length M.
+
+Output Format
+
+For each test case, print the count of the number of anagramic groups in the given N strings, separated by a new line.
+**/
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+     while(T-->0){
+         int N=sc.nextInt();
+         int M=sc.nextInt();
+         HashMap<String,Integer> hm=new HashMap<>();
+         for(int i=0;i<N;i++){
+         String str=sc.next();
+         char [] ArrayS=str.toCharArray();
+         Arrays.sort(ArrayS);
+         String harshini=new String(ArrayS);
+        hm.put(harshini,hm.getOrDefault(harshini,0));
+     }
+     System.out.println(hm.size());
+    }
+    System.out.println();
+}
+}
