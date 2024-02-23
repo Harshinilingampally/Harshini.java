@@ -1,0 +1,15 @@
+class Solution {
+    public int[] frequencySort(int[] nums) {
+        HashMap<Integer,Integer> hm =new HashMap<>();
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(int n:nums){
+            ans.add(n);
+            hm.put(n,hm.getOrDefault(n,0)+1);
+
+        }
+        Collections.sort(ans,(a,b) ->
+        (hm.get(a) ==hm.get(b)) ? b-a : hm.get(a)-hm.get(b)
+        );
+        return ans.stream().mapToInt(i -> i).toArray();
+    }
+}
