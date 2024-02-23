@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int p=0;
+     int T=sc.nextInt();
+     while(T-->0){
+         int N=sc.nextInt();
+        System.out.println("Case #" + ++p + ":");
+         for(int i=0;i<N;i++){
+             for(int j=0;j<N-i-1;j++){
+                 System.out.print(" ");
+             }
+             for(int k=0;k<=i;k++){
+                 System.out.print('*');
+             }
+             System.out.println();
+         }
+       
+       }
+    }
+}
