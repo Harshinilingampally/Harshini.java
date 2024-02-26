@@ -1,0 +1,21 @@
+class Solution {
+    public int minLength(String s) {
+       StringBuilder str=new StringBuilder(s);
+       while(true)
+       {
+        boolean checker=true;
+        for(int i=0;i<str.length()-1;i++)
+        {
+            char temp1=str.charAt(i);
+            char temp2=str.charAt(i+1);
+            if((temp1=='A' && temp2=='B') || (temp1=='C' && temp2=='D')){
+                str.deleteCharAt(i);
+                str.deleteCharAt(i);
+                checker=false;
+            }
+        }
+        if(checker) break;
+       }
+       return str.length();
+    }
+}
