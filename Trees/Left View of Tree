@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+class TreeNode{
+    int data;
+    TreeNode right;
+    TreeNode left;
+    TreeNode(int data){
+        this.data=data;
+        this.right=this.left=null;
+    }
+}
+public class Main {
+  public static  TreeNode insert(TreeNode root,int key){
+      if(root==null) return new TreeNode(key);
+     if(root.data<key){
+         root.right=insert(root.right,key);
+     }
+     else if(root.data>key){
+         root.left=insert(root.left,key);
+     }
+     return root;
+  }
+  public static void leftView(List<Integer> result,TreeNode current,int currentDepth){
+      if(current==null) return;
+      if(currentDepth==result.size()){
+          result.add(current.data);
+      }
+      leftView(result,current.left,currentDepth+1);
+      leftView(result,current.right,currentDepth+1);
+      return;
+  }
+    public static void main(String[] args) {
+     Scanner sc=new Scanner(System.in);
+     int T=sc.nextInt();
+     while(T-->0){
+         int N=sc.nextInt();
+         int [] arr=new int[N];
+         TreeNode root=null;
+         for(int i=0;i<N;i++){
+         int val=sc.nextInt();
+         root=insert(root,val);
+         }
+     List<Integer> result=new ArrayList<>();
+      leftView(result,root,0);
+     for(int items:result){
+         System.out.print(items+ " ");
+     }
+     System.out.println();
+     } 
+    }
+}
