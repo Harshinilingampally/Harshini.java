@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+class TreeNode{
+    int data;
+    TreeNode right,left;
+    TreeNode(int data){
+        this.data=data;
+        this.right=this.left=null;
+    }
+}
+
+public class Main {
+      public static TreeNode trimBST(TreeNode root,int a,int b){
+         if(root==null) return null;
+         if(root.data<a) return trimBST(root.right,a,b);
+         if(root.data>b) return trimBST(root.left,a,b);
+         root.left=trimBST(root.left,a,b);
+         root.right=trimBST(root.right,a,b);
+         return root;
+     }
+    public static TreeNode insert(TreeNode root,int key){
+        if(root==null) return new TreeNode(key);
+        if(key>root.data) {
+            root.right=insert(root.right,key);
+        }
+        else if(key<root.data)
+        {
+            root.left=insert(root.left,key);
+        }
+        return root;
+    }
+    static void printTree(TreeNode root){
+        if(root==null) return ;
+        System.out.print(root.data+ " ");
+        printTree(root.left);
+        printTree(root.right);
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int L=sc.nextInt();
+            int R=sc.nextInt();
+            int [] arr=new int[N];
+            for(int i=0;i<N;i++){
+             arr[i]=sc.nextInt();
+            }
+             TreeNode root=null;
+             for(int i=0;i<N;i++){
+              root=insert(root,arr[i]);
+             }
+            TreeNode H=trimBST(root,L,R);
+            printTree(H);
+            System.out.println();
+
+        }
+    }
+}
