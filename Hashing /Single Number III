@@ -1,0 +1,18 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+       int [] arr=new int[2];
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int item:nums){
+            hm.put(item,hm.getOrDefault(item,0)+1);
+        }
+        int index=0;
+         for(int item:nums){
+        if(hm.get(item)==1){
+           arr[index++]=item;
+           if(index==2) break;
+        }
+         }
+      return arr;
+        
+    }
+}
