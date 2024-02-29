@@ -1,0 +1,15 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+        int answer=0;
+        int count=0;
+        for(int i=0;i<32;i++){
+            count=0;
+            for(int j=0;j<nums.length;j++){
+            count=count+ ((nums[j] >> i) & 1); // used to calculate the  total no of set bits at ith postion 
+                }
+                count=count%3;     // returns 1 if single number's set bit presnt at that pos.
+                answer=answer|count<<i;
+            }
+          return answer;
+    }
+}
