@@ -1,0 +1,36 @@
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int xor1=0;
+
+        for(int i=0;i<nums.length;i++){
+            xor1^=nums[i];                    // this results the xor of single numbers, we have to extract two single numbers from that value
+        }
+        int count=0;
+
+        while(xor1!=0){
+            if((xor1 & 1 )!=0){
+                break;                      //  count the position where xor  value contains set bit
+            }
+                count++;
+                xor1=xor1>>1;
+        }
+        int xor2=0;
+        int xor3=0;
+        for(int j=0;j<nums.length;j++){
+            if((nums[j] & (1<<count)) !=0){                    // divide the array elements in to two parts and apply xor
+               xor2^=nums[j];                                  // 1) xor2 --> elements which have set bit at count position
+                                                               // 2) xor3 --> elements which is unset at count position
+         }
+            else{
+                xor3^=nums[j];
+            }
+        }
+        int [] arr=new int[2];
+        arr[0]=xor2;
+        arr[1]=xor3;
+        return arr;
+    }
+}
+                                                          
+                
+           
