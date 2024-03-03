@@ -1,0 +1,15 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        TreeSet<Integer> ts = new TreeSet<Integer>();
+        int maxProfit = 0;
+        ts.add(prices[0]);
+        for(int i = 1; i<prices.length; i++){
+            if(prices[i] > ts.first()){
+                maxProfit = Math.max(maxProfit, prices[i] - ts.first());
+            }
+            ts.add(prices[i]);
+        }
+        return maxProfit;
+        
+    }
+}
