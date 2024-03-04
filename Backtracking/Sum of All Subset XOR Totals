@@ -1,0 +1,14 @@
+class Solution {
+    public static int calculateXor(int [] arr,int index,int currentXorValue){
+        if(index==arr.length) return currentXorValue;
+         
+         int value1=calculateXor(arr,index+1,currentXorValue^ arr[index]);
+         int value2=calculateXor(arr,index+1,currentXorValue);
+
+         return value1+value2;
+    }
+
+    public int subsetXORSum(int[] nums) {
+       return calculateXor(nums,0,0);
+    }
+}
