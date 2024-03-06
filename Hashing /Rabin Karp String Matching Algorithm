@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    static long m=(long)1e9+7;
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            String A=sc.next();
+            String B=sc.next();
+            int length1=A.length();
+            int length2=B.length();
+             long p=97;
+            long PHA=0;
+            long PHB=0;
+            int count=0;
+            long p1=p;
+            for(int i=0;i<length1;i++){
+                PHA=(PHA+(B.charAt(i)*p1)%m)%m;
+                PHB=(PHB+(A.charAt(i)*p1)%m)%m;
+                p1=(p*p1)%m;
+            }
+               if(PHA==PHB){
+                 count++;
+            }
+            long p2=p;
+            for(int i=length1;i<length2;i++){
+                PHA=(PHA+(B.charAt(i)*p1)%m)%m;
+                PHA=(PHA-((B.charAt(i-length1)*p2)%m)+m)%m;
+                PHB=(PHB*p)%m;
+                 if(PHA==PHB){
+                    count++;
+                }
+                p1=(p*p1)%m;
+                p2=(p*p2)%m;
+            }
+           System.out.println(count);
+        }
+    }
+}
