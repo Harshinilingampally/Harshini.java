@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            String A=sc.next();
+            String B=sc.next();
+            int length1=A.length();
+            int length2=B.length();
+            int n=1000000007;
+            char [] str1=A.toCharArray();
+            char [] str2=B.toCharArray();
+            int [] PHA=new int[length1];
+            int [] PHB=new int[length2];
+            int p=5;
+            int [] powerArray=new int[Math.max(length1,length2)];
+            powerArray[0]=p;
+            for(int i=1;i<powerArray.length;i++){
+                powerArray[i]=powerArray[i-1]*p;
+            }
+            int PHVA=0;
+            int PHVB=0;
+            PHA[0]=str1[0]*5;
+            for(int i=1;i<str1.length;i++){
+                PHA[i]=str1[i]* powerArray[i+1]+PHA[i-1];
+            }
+            PHB[0]=str2[0]*5;
+            for(int i=1;i<str2.length;i++){
+                PHB[i]=str2[i]*powerArray[i+1]+PHB[i-1];
+            }
+            int Q=sc.nextInt();
+            for(int m=0;m<Q;m++){
+                int i=sc.nextInt();
+                int j=sc.nextInt();
+                int k=sc.nextInt();
+                int l=sc.nextInt();
+                PHVA=PHA[j]-PHA[i-1];
+                PHVB=PHB[l]-PHB[k-1];
+                int x=i-k;
+                if(i>k){
+                    PHVB=PHVB*powerArray[x];
+                }
+                else{
+                   PHVA= PHVA*powerArray[-x];
+
+                }
+                if(PHVA==PHVB){
+                    System.out.println("Yes");
+                }
+                else{
+                    System.out.println("No");
+                }
+
+            }
+
+        }
+    }
+}
