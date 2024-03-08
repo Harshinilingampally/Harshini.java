@@ -1,0 +1,27 @@
+// USING PRIORITY QUEUE WITH COMPARATOR
+class Solution {
+    public String largestNumber(int[] nums) {
+        PriorityQueue<String> pq = new PriorityQueue<>((a, b) -> (b + a).compareTo(a + b));
+        for (int item : nums) {
+            pq.offer(Integer.toString(item));
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!pq.isEmpty()) {
+            sb.append(pq.poll());
+        }
+        String str = sb.toString();
+        int noOfTrailingZeroes = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '0') {
+                noOfTrailingZeroes++;
+            } else {
+                break;
+            }
+
+        }
+        str = str.substring(noOfTrailingZeroes);
+
+        return str.length() > 0 ? str : "0";
+
+    }
+}
