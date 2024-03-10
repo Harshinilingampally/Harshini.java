@@ -1,0 +1,24 @@
+public class Solution {
+    public static boolean vowels(char ch){
+            if(ch=='a'|| ch=='e' || ch=='i' || ch=='o' || ch=='u'){
+                return true;
+            }
+            return false;
+        }
+            public int solve(String A) {
+            int modulo=(int)1e9+7;
+        int vowelcount=0;
+        int consonantscount=0;
+        char [] array=A.toCharArray();
+        for(char ch:array){
+            if(vowels(ch)){
+                vowelcount++;
+            }
+            else{
+                consonantscount++;
+            }
+        }
+        long totalcount=(long) (vowelcount*consonantscount)%modulo;        
+        return (int)((totalcount)%modulo);
+    }
+}
