@@ -1,0 +1,23 @@
+public class Solution {
+    private static boolean isMatchingPair(char open, char close) {
+        return (open == '(' && close == ')') || (open == '[' && close == ']') || (open == '{' && close == '}');
+    }
+    public int isValid(String A) {
+        Stack<Character> stack=new Stack<>();
+        
+          for (char c : A.toCharArray()) {
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else if (c == ')' || c == ']' || c == '}') {
+                if (stack.isEmpty() || !isMatchingPair(stack.pop(), c)) {
+                    return 0;
+                }
+            } 
+        }
+        if(stack.isEmpty()) return 1;
+        else return 0;
+    }
+    
+    }
+        
+    
