@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int q=0;q<t;q++){
+            long m=sc.nextLong();
+            long n=sc.nextLong();
+            ArrayList<Boolean> isPrime=new ArrayList<Boolean>((int)(n-m+1));
+            for(int i=0;i<n-m+1;i++){
+                isPrime.add(true);
+            }
+            for(long p=2;p*p<=n;p++){
+                long start=Math.max(p*p,((m+p-1)/p)*p);
+                for(long i=start;i<=n;i+=p){
+                    isPrime.set((int)(i-m),false);
+                }
+            }
+            for(long i=Math.max(2,m);i<=n;i++){
+                if(isPrime.get((int)(i-m))){
+                    System.out.println(i);
+                }
+            }
+            if(q<t-1){
+                System.out.println();
+        }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+        
+    
