@@ -1,0 +1,30 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            String str=sc.next();
+            char [] charArray=str.toCharArray();
+            HashMap<Character,Integer> hm=new HashMap<>();
+            for(int i=0;i<charArray.length;i++){
+                char ch=charArray[i];
+                hm.put(ch,hm.getOrDefault(ch,0)+1);
+
+            }
+            int xor=0;
+           for(HashMap.Entry<Character,Integer> entry:hm.entrySet()){
+               xor^=entry.getValue();
+           }
+
+         if(xor==0){
+             System.out.println("Banta");
+         }
+         else{
+             System.out.println("Santa");
+           }
+            }
+            }
+        }
+    
