@@ -1,0 +1,119 @@
+
+/* Given an array of integers of size N and a window size K. For each continuous window of size K, find the highest element in the window. Output the sum of the highest element of all the windows.
+Input Format
+
+The First line of input contains T - number of test cases. It is followed by 2T lines, the first line contains N and K - the size of the array and the window size K. The second line contains N integers - the elements of the array.
+
+Output Format
+
+For each test case, print the sum of the highest element of all the windows of size K, separated by a newline. */
+
+import java.io.*;
+import java.util.*;
+class DoublyEndedQueue{
+class Node{
+    int value;
+    Node previous;
+    Node next;
+    Node (int value){
+        this.value=value;
+    }
+  }
+    private Node head;
+    private Node tail;
+    public DoublyEndedQueue(){
+        head=null;
+        tail=null;
+    }
+    public void addLast(int value){
+        Node newNode=new Node(value);
+        if(tail==null){
+            head=newNode;
+            tail=newNode;
+        }
+        else{
+            tail.next=newNode;
+            newNode.previous=tail;
+            tail=newNode;
+        }
+    }
+    public int removeLast(){
+        if(tail==null){
+            return 0;
+        }
+        int value=tail.value;
+        if(tail.previous==null){
+            head=null;
+            tail=null;
+        }
+        else{
+            tail=tail.previous;
+            tail.next=null;
+        }
+        return value;
+    }
+    public int removeFirst(){
+        if(head==null){
+            return 0;
+        }
+        int value=head.value;
+        if(head.next==null){
+            head=null;
+            tail=null;
+        }
+        else{
+            head=head.previous;
+            head.previous.next=null;
+        }
+        return value;
+    }
+    public int getFirst(){
+        if(head==null){
+            return 0;
+        }
+        return head.value;
+    }
+    public  boolean isEmpty(){
+        return head==null;
+    }
+    public int getLast(){
+        if(head==null){
+            return 0;
+        }
+        else{
+            return tail.value;
+        }
+    }
+}
+public class Main {
+   public static long  windowMax(int [] arr,int N,int K){
+       long answer=0;
+    ArrayDeque<Integer> deque=new ArrayDeque<>();
+    for(int i=0;i<N;i++){
+        while(!deque.isEmpty() && arr[deque.getLast()]<=arr[i]){
+            deque.removeLast();
+        }
+        if( !deque.isEmpty() && deque.getFirst()<=i-K){
+            deque.removeFirst();
+        }
+        deque.addLast(i);
+        if(i>=K-1){
+        answer+=arr[deque.getFirst()];
+        }
+      }
+      return answer;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int K=sc.nextInt();
+            int [] arr=new int[N];
+            for(int i=0;i<N;i++){
+                arr[i]=sc.nextInt();
+            }
+            System.out.println((int)windowMax(arr,N,K));        
+    }
+}
+}
