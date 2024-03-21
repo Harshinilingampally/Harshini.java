@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+class ListNode{
+    int data;
+    ListNode next;
+    ListNode previous;
+    ListNode(int data){
+        this.data=data;
+        this.previous=null;
+        this.next=null;
+    }
+  }
+public class Main {
+    public static ListNode LRUCache(int [] arr,int N,int K){
+        HashMap<Integer,ListNode> hm=new HashMap<>();
+        ListNode h=new ListNode(-1);
+        ListNode t=new ListNode(-1);
+        h.next=t;
+        t.previous=h;
+        for(int i=0;i<N;i++){
+            if(hm.containsKey(arr[i])){
+                ListNode n=hm.get(arr[i]);
+                if(n.previous!=null)
+                n.previous.next=n.next;
+                if(n.next!=null)
+                n.next.previous=n.previous;
+                n.previous=t.previous;
+                t.previous.next=n;
+                n.next=t;
+                t.previous=n;
+            }
+            else{
+                if(hm.size()==K){
+                    hm.remove(h.next.data);
+                    h.next=h.next.next;
+                     if(h.next!=null)
+                    h.next.previous=h;
+                }
+                ListNode n=new ListNode(arr[i]);
+                t.previous.next=n;
+                n.previous=t.previous;
+                n.next=t;
+                t.previous=n;
+                hm.put(arr[i],n);
+            }
+        }
+        return h.next;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int K=sc.nextInt();
+            int [] arr=new int[N];
+            for(int i=0;i<N;i++){
+                arr[i]=sc.nextInt();
+            }
+               ListNode result=LRUCache(arr,N,K);
+                ListNode temp=result;
+                  while(temp.next!=null){
+                  System.out.print(temp.data+" ");
+                      temp=temp.next;
+                  }
+              System.out.println();
+           }
+        }
+    }
