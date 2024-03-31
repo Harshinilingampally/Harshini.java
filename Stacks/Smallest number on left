@@ -1,0 +1,19 @@
+class Solution{
+    static List<Integer> leftSmaller(int n, int a[])
+    {
+        //code here
+        List<Integer> list=new ArrayList<>();
+        Stack<Integer> stack=new Stack<>();
+        for(int i=0;i<n;i++){
+            while(!stack.isEmpty() && a[i]<=stack.peek()){
+                stack.pop();
+            }
+            
+            list.add(stack.isEmpty() ? -1 : stack.peek());
+            stack.push(a[i]);
+        }
+        
+        return list;
+        
+    }
+}
