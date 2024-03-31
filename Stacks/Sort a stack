@@ -1,0 +1,15 @@
+class GfG{
+	public Stack<Integer> sort(Stack<Integer> s)
+	{
+		Stack<Integer> tempstack=new Stack<>();
+		while(!s.isEmpty()){
+		int topElement=s.pop();
+		while(!tempstack.isEmpty() && topElement<tempstack.peek()){
+		    s.push(tempstack.pop());
+		}
+		tempstack.push(topElement);
+		
+		}
+		return tempstack;
+}
+}
