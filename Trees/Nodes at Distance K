@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+class TreeNode{
+    TreeNode left;
+    TreeNode right;
+    int data;
+    TreeNode(int data){
+        this.data=data;
+        this.right=this.left=null;
+    }
+}
+public class Main {
+    public static TreeNode insert(TreeNode root,int key){
+        if(root==null) return new TreeNode(key);
+        if(key>root.data){
+            root.right=insert(root.right,key);
+        }
+        else if(key<root.data){
+            root.left=insert(root.left,key);
+        }
+        return root;
+    }
+    public static boolean path(TreeNode root,int x,List<TreeNode> list){
+        if(root==null) return false;
+        if(root.data==x || path(root.left,x,list)|| path(root.right,x,list)){
+            list.add(root);
+            return true;
+        }
+        return false;
+    }
+    public static int count(TreeNode source,int d){
+        if(source==null) return 0;
+        if(d==0) return 1;
+        return count(source.left,d-1)+count(source.right,d-1);
+    }
+    public static int totalCount(List<TreeNode> list,int k){
+       int ans=count(list.get(0),k);
+        for(int i=1;i<list.size();i++){
+            if(i==k){
+                ans+=1;
+                break;
+            }
+            if(list.get(i).left==list.get(i-1)){
+                ans+=count(list.get(i).right,k-i-1);
+            }
+            else{
+                ans+=count(list.get(i).left,k-i-1);
+            }
+            }
+              return ans;
+        }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int S=sc.nextInt();
+            int K=sc.nextInt();
+            TreeNode root=null;
+            for(int i=0;i<N;i++){
+                int val=sc.nextInt();
+               root= insert(root,val);
+            }
+            List<TreeNode> li=new ArrayList<>();
+            path(root,S,li);
+            int result=totalCount(li,K);
+             System.out.println(result);
+        }
+    }
+}
