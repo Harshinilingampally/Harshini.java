@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+class TreeNode{
+    int val;
+    TreeNode left,right;
+    public TreeNode(int val){
+        this.val=val;
+        this.left=null;
+        this.right=null;
+    }
+}
+public class Main {
+    public static void main(String[] args) throws IOException
+     {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int T=Integer.parseInt(br.readLine());
+        while(T-->0){
+            int N=Integer.parseInt(br.readLine());
+            int [] arr=new int[N];
+            StringTokenizer st=new StringTokenizer(br.readLine());
+            for(int i=0;i<N;i++){
+                arr[i]=Integer.parseInt(st.nextToken());
+            }
+            TreeNode root=constructBST(arr);
+            int diameter=findDiameter(root);
+            System.out.println(diameter);
+        }
+    }
+    private static TreeNode constructBST(int [] arr){
+        TreeNode root=null;
+        for(int val:arr){
+            root=insert(root,val);
+        }
+        return root;
+    }
+    private static TreeNode insert(TreeNode root,int val){
+        if(root==null){
+            return new TreeNode(val);
+        }
+        if(val<root.val){
+            root.left=insert(root.left,val);
+        }
+        else{
+            root.right=insert(root.right,val);
+        }
+        return root;
+    }
+    private static int findDiameter(TreeNode root){
+        if(root==null) return 0;
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+        int currentDiameter=leftHeight+rightHeight+1;
+        int leftDiameter =findDiameter(root.left);
+        int rightDiameter=findDiameter(root.right);
+        return Math.max(currentDiameter,Math.max(leftDiameter,rightDiameter));
+    }
+    private static int height(TreeNode node){
+        if(node==null) return 0;
+        return 1+Math.max(height(node.left),height(node.right));
+    }
+}
