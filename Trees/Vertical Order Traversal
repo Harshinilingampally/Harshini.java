@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+class TreeNode{
+    int data;
+    TreeNode right;
+    TreeNode left;
+    TreeNode(int data){
+        this.data=data;
+        this.right=null;
+        this.left=null;
+    }
+}
+public class Main {
+    public static TreeNode insert(TreeNode root,int key){
+        if(root==null) return new TreeNode(key);
+        if(key>root.data){
+            root.right=insert(root.right,key);
+        }
+        else if(key<root.data){
+            root.left=insert(root.left,key);
+        }
+        return root;
+    }
+    public static void VLO(TreeNode root,int level,TreeMap<Integer,List<Integer>> tm){
+        if(root==null) return;
+        if(!tm.containsKey(level)){
+            tm.put(level,new ArrayList<>());
+        }
+        tm.get(level).add(root.data);
+        VLO(root.left,level-1,tm);
+        VLO(root.right,level+1,tm);
+    }
+    public static void print(TreeNode root){
+      TreeMap<Integer,List<Integer>> tm=new TreeMap<>();
+           VLO(root,0,tm);
+           for(List<Integer> levelValues: tm.values()){
+               Collections.sort(levelValues);
+               for(int value:levelValues){
+                   System.out.print(value+" ");
+               }
+               System.out.println();
+           }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            TreeNode root=null;
+               for(int i=0;i<N;i++){
+                int val=sc.nextInt();
+                root=insert(root,val);
+            }
+           print(root);
+           System.out.println();
+        }
+    }
+}
