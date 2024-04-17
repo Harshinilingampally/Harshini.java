@@ -1,0 +1,42 @@
+class Trie {
+   Trie [] children;
+    boolean isWordEnd;
+    public Trie() {
+      children=new Trie[26];
+        isWordEnd=false;
+    }
+    public void insert(String word) {
+      Trie curNode=this;
+      for(int i=0;i<word.length();i++){
+        char ch=word.charAt(i);
+        if(curNode.children[ch-'a']==null){
+            Trie newNode=new Trie();
+            curNode.children[ch-'a']=newNode;
+        }
+            curNode=curNode.children[ch-'a'];
+      }
+      curNode.isWordEnd=true;
+    }
+    public boolean search(String word) {
+        Trie curNode=this;
+      for(int i=0;i<word.length();i++){
+        char ch=word.charAt(i);
+        if(curNode.children[ch-'a']==null){
+            return false;
+        }
+        curNode=curNode.children[ch-'a'];
+    
+      }
+    return curNode.isWordEnd;
+    }
+    public boolean startsWith(String prefix) {
+        Trie curNode=this;
+        for(int i=0;i<prefix.length();i++){
+            char ch=prefix.charAt(i);
+            if(curNode.children[ch-'a']==null) return false;
+            curNode=curNode.children[ch-'a'];
+            
+        }
+        return true;
+    }
+}
