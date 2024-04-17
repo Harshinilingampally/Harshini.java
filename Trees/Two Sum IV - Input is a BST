@@ -1,0 +1,61 @@
+class inorder{
+    Stack<TreeNode> stack;
+
+    public inorder(TreeNode root){
+        stack=new Stack<>();
+        pushLeft(root);
+    }
+    public TreeNode getNext(){
+        if(stack.isEmpty()) return null;
+        TreeNode node=stack.pop();
+        pushLeft(node.right);
+        return  node;
+    }
+        public void pushLeft(TreeNode node){
+            while(node!=null){
+            stack.push(node);
+            node=node.left;
+        }
+        }
+
+}
+class revinorder{
+    Stack<TreeNode> stack;
+
+    public revinorder(TreeNode root){
+        stack=new Stack<>();
+        pushRight(root);
+    }
+    public TreeNode getNext(){
+        if(stack.isEmpty()) return null;
+        TreeNode node=stack.pop();
+        pushRight(node.left);
+        return  node;
+    }
+        public void pushRight(TreeNode node){
+            while(node!=null){
+            stack.push(node);
+            node=node.right;
+        }
+        }
+
+}
+class Solution {
+    public boolean findTarget(TreeNode root, int k) {
+        inorder O1=new inorder(root);
+        revinorder O2=new revinorder(root);
+        TreeNode p1=O1.getNext();
+        TreeNode p2=O2.getNext();
+        while(p1!=p2){
+            if(p1.val+p2.val==k) return true;
+            else if(p1.val+p2.val>k){
+                p2=O2.getNext();
+            }
+            else{
+                p1=O1.getNext();
+            }
+        }
+            return false;
+        
+    }
+}
