@@ -1,0 +1,67 @@
+import java.io.*;
+import java.util.*;
+class TrieNode{
+    TrieNode [] c;
+    TrieNode(){
+        c=new TrieNode[2];
+    }
+}
+public class Main {
+    public static int maximumBits(int [] arr){
+        int maxNum=Arrays.stream(arr).max().getAsInt();
+        int maxBits=32-Integer.numberOfLeadingZeros(maxNum);
+        return maxBits;
+    }
+    public static void insert(TrieNode root,int a,int bits){
+      for(int i=bits-1;i>=0;i--){
+          int bitValue=checkBit(a,i)?1:0;
+          if(root.c[bitValue]==null){
+              root.c[bitValue]=new TrieNode();
+          }
+          root=root.c[bitValue];
+      }
+    }
+    public static boolean checkBit(int a,int pos){
+        int flag=a>>pos & 1;
+        if(flag==0){
+            return false;
+        }
+        return true;
+    }
+    public static int findMaxSubArrayXor(TrieNode root,int a,int bits){
+        int ans=0;
+      for(int i=bits-1;i>=0;i--){
+          int bitValue=checkBit(a,i)?1:0;
+          if(root.c[1-bitValue]!=null){
+               ans+=1<<i;
+              root=root.c[1-bitValue];
+          }
+          else{
+              root=root.c[bitValue];
+          }
+      }
+      return ans;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int [] arr=new int[N];
+            for(int i=0;i<N;i++){
+                arr[i]=sc.nextInt();
+            }
+            int answer=0;
+            TrieNode root=new TrieNode();
+            int bits=maximumBits(arr);
+            int x=0;
+            insert(root,0,bits);
+            for(int i=0;i<arr.length;i++){
+             x=x^arr[i];
+             answer=Math.max(answer,findMaxSubArrayXor(root,x,bits));
+             insert(root,x,bits);
+            }
+             System.out.println(answer);
+        }
+    }
+}
