@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+  class TrieNode{
+      TrieNode [] c;
+      TrieNode(){
+        c=new TrieNode[2];
+      } 
+    }
+public class Main {
+    public static void insert(TrieNode root,int a,int bits){
+        for(int i=bits-1;i>=0;i--){
+        int bitvalue=checkBit(a,i)?1:0;
+        if(root.c[bitvalue]==null){
+            root.c[bitvalue]=new TrieNode();
+        }
+        root=root.c[bitvalue];
+        }
+    }
+    public static int find(TrieNode root,int a,int bits){
+        int ans=0;
+        for(int i=bits-1;i>=0;i--){
+        int bitvalue=checkBit(a,i)?1:0;
+        if(root.c[1-bitvalue]!=null){
+            ans+=1<<i;
+            root=root.c[1-bitvalue];
+        }
+        else{
+            root=root.c[bitvalue];
+        }
+        }
+        return ans;
+    }
+    public static boolean checkBit(int a,int pos){
+        int flag=(a>>pos) & 1;
+        if(flag==0){
+            return false;
+        }
+        return true;
+    }
+    public static int findBits(int [] arr){
+       int maxnum=Arrays.stream(arr).max().getAsInt();
+        int maxbits=32-Integer.numberOfLeadingZeros(maxnum);
+          return maxbits;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+        int N=sc.nextInt(); 
+        int [] arr=new int[N];
+        for(int i=0;i<N;i++){
+            arr[i]=sc.nextInt();       
+        }
+        TrieNode root=new TrieNode();
+
+         int bits=findBits(arr);
+
+        for(int i=0;i<arr.length;i++){
+            insert(root,arr[i],bits);
+        }
+       int ans=0;
+        for(int i=0;i<arr.length;i++){
+            ans=Math.max(ans,find(root,arr[i],bits));
+        }
+      System.out.println(ans);
+        }
+    }
+}
