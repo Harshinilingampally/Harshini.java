@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.util.HashSet;
+public class Main{
+    public static boolean checkDif(int [] arr,int N,int K){
+           HashSet<Integer> hs=new HashSet<>();
+        for(int i=0;i<N;i++){
+                if(hs.contains(arr[i]-K) || hs.contains(arr[i]+K)){
+                    return true;
+                }
+                hs.add(arr[i]);
+            }
+        return false;
+    }
+    public static void main(String[] args) throws IOException{
+  
+    BufferedReader sc=new BufferedReader(new InputStreamReader(System.in));
+    int T=Integer.parseInt(sc.readLine());
+     while(T-->0){
+         String [] inputLine=sc.readLine().split(" ");
+         int N=Integer.parseInt(inputLine[0]);
+         int K=Integer.parseInt(inputLine[1]);
+        String [] ele =sc.readLine().split(" ");
+         int [] arr=new int[N];
+         for(int i=0;i<N;i++){
+             arr[i]=Integer.parseInt(ele[i]);
+         }
+        Arrays.sort(arr);
+     boolean flag=checkDif(arr,N,K);
+     if(flag){
+         System.out.println("true");
+     }
+     else{
+         System.out.println("false");
+     }
+    }
+}
+}
