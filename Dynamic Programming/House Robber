@@ -1,0 +1,15 @@
+public class Solution {
+	public static int maxMoneyLooted(int[] houses) {
+		//Your code goes here
+		int [] dp=new int[houses.length];
+		dp[0]=houses[0];
+		for(int i=1;i<houses.length;i++){
+         int pick=houses[i];
+		 if(i>1)
+		 pick+=dp[i-2];
+		 int notpick=0+dp[i-1];
+		 dp[i]=Math.max(pick,notpick);
+		}
+		return dp[houses.length-1];
+	}
+}
