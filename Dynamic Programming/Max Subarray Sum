@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        while(T-->0){
+            int N=sc.nextInt();
+            int [] arr=new int[N];
+            for(int i=0;i<N;i++){
+                arr[i]=sc.nextInt();
+            }
+            int [] dp=new int[N];
+            dp[0]=arr[0];
+            int startindex=0;
+            int endindex=0;
+            int tempindex=0;
+            for(int i=1;i<N;i++){
+                if(dp[i-1]+arr[i]>=arr[i]){
+                    dp[i]=dp[i-1]+arr[i];
+                }
+                else{
+                    dp[i]=arr[i];
+                    tempindex=i;
+                }
+                if(dp[i]>dp[endindex]){
+                 startindex=tempindex;
+                 endindex=i;
+                }
+            }
+            int maxi=Integer.MIN_VALUE;
+            for(int i=0;i<N;i++){
+               maxi=Math.max(maxi,dp[i]);
+            }
+            System.out.println(maxi+ " "+ startindex +" "+ endindex);
+        }
+    }
+    }
