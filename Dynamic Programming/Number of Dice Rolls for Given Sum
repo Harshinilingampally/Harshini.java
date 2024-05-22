@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    static final int modulo=1000000007;
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int T=sc.nextInt();
+        int [] testCases=new int[T];
+        int max=0;
+        for(int i=0;i<T;i++){
+            testCases[i]=sc.nextInt();
+            if(testCases[i]>max){
+                max=testCases[i];
+            }
+        }
+        long [] dp=new long[max+1];
+        dp[0]=1;
+        for(int i=1;i<=max;i++){
+            for(int j=1;j<=6;j++){
+                if(i-j>=0){
+                    dp[i]=(dp[i]+dp[i-j])%modulo;
+                }
+            }
+        }
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<T;i++){
+            sb.append(dp[testCases[i]]).append("\n");
+        }
+        System.out.print(sb.toString());
+        sc.close();
+    }
+}
