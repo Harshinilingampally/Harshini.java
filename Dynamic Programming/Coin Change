@@ -1,0 +1,35 @@
+class Solution {
+    public int fun(int index, int amount, int[] coins, int[][] dp) {
+        if (amount == 0) {
+            return 0;  
+        }
+        if (amount < 0 || index < 0) {
+            return Integer.MAX_VALUE;  
+        }
+        if (dp[index][amount] != -1) {
+            return dp[index][amount];  
+        }
+        int notConsider = fun(index - 1, amount, coins, dp);
+                int consider = Integer.MAX_VALUE;
+        if (coins[index] <= amount) {
+            int res = fun(index, amount - coins[index], coins, dp);
+            if (res != Integer.MAX_VALUE) {
+                consider = res + 1;
+            }
+        }
+        dp[index][amount] = Math.min(consider, notConsider);
+        return dp[index][amount];
+    }
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0) return 0;
+        if (coins.length == 0) return -1;
+        int[][] dp = new int[coins.length][amount + 1];
+        for (int i = 0; i < coins.length; i++) {
+            for (int j = 0; j <= amount; j++) {
+                dp[i][j] = -1;
+            }
+        }
+        int result = fun(coins.length - 1, amount, coins, dp);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+}
