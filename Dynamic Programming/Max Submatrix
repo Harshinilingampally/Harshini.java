@@ -1,0 +1,32 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int Kadanes(int [] arr){
+        int maxSum=Integer.MIN_VALUE;
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            maxSum=Math.max(sum,maxSum);
+            if(sum<0){
+                sum=0;
+            }
+        }
+        return maxSum;
+    }
+    public static int maxSumSubmatrix(int mat[][], int n, int m) {
+        int [] dp=new int[n];
+        int maxsum=Integer.MIN_VALUE;
+        for(int colStart=0;colStart<m;colStart++){
+            Arrays.fill(dp,0);
+            for(int colEnd=colStart;colEnd<m;colEnd++){
+                for(int row=0;row<n;row++){
+                    dp[row]+=mat[row][colEnd];
+                }
+                   int CurrentMax=Kadanes(dp);
+                   maxsum=Math.max(maxsum,CurrentMax);
+                }
+
+            }
+            return maxsum;
+    }
+}
