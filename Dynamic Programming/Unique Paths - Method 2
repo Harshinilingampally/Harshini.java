@@ -1,0 +1,11 @@
+class Solution {
+public int uniquePaths(int m, int n) {
+        int TotalPaths=m+n-2;
+        int RightPaths=m-1;
+        long TotalWays=1; 
+        for(int i=1;i<=RightPaths;i++){ 
+            TotalWays=TotalWays*(TotalPaths-RightPaths+i)/i;
+        }   
+    return (int)TotalWays;   
+    }
+}
