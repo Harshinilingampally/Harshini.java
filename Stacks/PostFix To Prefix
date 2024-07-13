@@ -1,0 +1,19 @@
+import java.util.*;
+public class Solution {
+    public static String postfixToPrefix(String exp) {
+        Stack<String> prefixStack=new Stack<>();
+        for(int i=0;i<exp.length();i++){
+            char ch=exp.charAt(i);
+            if(ch=='+' || ch=='-'||ch=='*'||ch=='/'){
+               String op2= prefixStack.pop();
+               String op1= prefixStack.pop();
+               String preValue=ch+op1+op2;
+               prefixStack.push(preValue);
+            }
+            else{
+                prefixStack.push(ch+"");
+            }
+        }
+        return prefixStack.pop();
+    }
+}
