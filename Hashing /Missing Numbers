@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> missingNumbers(int[] arr, int n) {
+		// Write your code here.
+		Arrays.sort(arr);
+		int start=arr[0];
+		int end=arr[n-1];
+		HashSet<Integer> hs=new HashSet<>();
+
+		for(int item:arr){
+			hs.add(item);
+		}
+		TreeSet<Integer> ts=new TreeSet<>();
+		for(int i=start;i<end;i++){
+			if(!hs.contains(i)){
+				ts.add(i);
+			}
+		}
+	 ArrayList<Integer> sana=new ArrayList<>(ts);
+      return sana;
+	}
+}
