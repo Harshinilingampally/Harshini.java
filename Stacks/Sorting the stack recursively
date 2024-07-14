@@ -1,0 +1,24 @@
+import java.util.Stack;
+public class Solution {
+	public static void recurStack(Stack<Integer> s,int current){
+		if(s.isEmpty() || current>s.peek()){
+			s.push(current);
+		}
+		else{
+           int top=s.peek();
+		   s.pop();
+		   recurStack(s, current);
+		   s.push(top);
+		}
+	}
+	public static Stack<Integer> sortStack(Stack<Integer> s) {
+	
+		if(!s.isEmpty()){
+		int top=s.pop();
+		sortStack(s);
+		recurStack(s, top);
+		}
+
+		return s;
+	}
+}
