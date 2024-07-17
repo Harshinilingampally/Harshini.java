@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import sun.awt.image.ImageWatched.Link;
+
+public class Solution {
+    public static LinkedListNode<Integer> reverseLinkedList(LinkedListNode<Integer> head) {
+        Stack<LinkedListNode<Integer>> stack = new Stack<>();
+        LinkedListNode<Integer> temp = head;
+        while (temp != null) {
+            stack.push(temp);
+            temp = temp.next;
+        }
+        LinkedListNode<Integer> head2 = null;
+        LinkedListNode<Integer> prev = null;
+        while (!stack.isEmpty()) {
+            LinkedListNode<Integer> newNode = stack.pop();
+            if (head2 == null) {
+                head2 = newNode;
+                prev = head2;
+            } else {
+                prev.next = newNode;
+                prev = newNode;
+            }
+        }
+        if (prev != null) {
+            prev.next = null;
+        }
+        return head2;
+
+    }
+}
