@@ -1,0 +1,38 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution {
+    public static int findMinimumCost(String str) {
+        int length1 = 0;
+        int length2 = 0;
+        Stack<Character> stack = new Stack<>();
+        
+        if ((str.length()) % 2 != 0) {
+            return -1;
+        } else {
+            for (int i = 0; i < str.length(); i++) {
+                char ch = str.charAt(i);
+                if (ch == '{') {
+                    stack.push(ch);
+                } else {
+                    if (!stack.isEmpty() && stack.peek() == '{') {
+                        stack.pop();
+                    } else {
+                        stack.push(ch);
+                    }
+                }
+            }
+        }
+        
+        while (!stack.isEmpty()) {
+            char ch1 = stack.pop();
+            if (ch1 == '{') {
+                length1++;
+            } else {
+                length2++;
+            }
+        }
+        
+        return (length1 + 1) / 2 + (length2 + 1) / 2;
+    }
+}
