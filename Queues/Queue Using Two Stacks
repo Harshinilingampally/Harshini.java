@@ -1,0 +1,27 @@
+import java.util.* ;
+import java.io.*; 
+class Queue {
+	Stack<Integer> stk1, stk2;
+		public Queue() {
+		stk1=new Stack<>();
+		stk2=new Stack<>();
+	}
+	public boolean enqueue(int x) {
+			stk1.push(x);
+			return true;
+	}
+	public int dequeue() {
+		if(isEmpty()){
+			return -1;
+		}
+		if(stk2.isEmpty()){
+		while(!stk1.isEmpty()){
+			stk2.push(stk1.pop());
+		}
+		}
+		return stk2.pop();
+	}
+	public boolean isEmpty(){
+		return (stk1.isEmpty()) && (stk2.isEmpty());
+	}
+	}
