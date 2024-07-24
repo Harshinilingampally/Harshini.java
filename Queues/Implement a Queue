@@ -1,0 +1,45 @@
+import java.util.* ;
+import java.io.*; 
+public class Queue {
+    int front;
+    int rear;
+    int size;
+    ArrayList<Integer> al;
+    Queue() {
+  
+     front=0;
+     rear=0;
+    al=new ArrayList<>();
+     size=0;
+    }
+    boolean isEmpty() {
+        return size==0;
+    }
+
+    void enqueue(int data) {
+        al.add(data);
+        rear=rear+1;
+        size++;
+
+    }
+        int dequeue() {
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            int x=al.get(front);
+            front++;
+            size--;
+            return x;
+        }
+    }
+    int front() {
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            return al.get(front);
+        }
+    }
+
+}
