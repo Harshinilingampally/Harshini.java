@@ -1,0 +1,28 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int[] bracketNumber(String s) {
+        Stack<Integer> stack=new Stack<>();
+        ArrayList<Integer> al=new ArrayList<>();
+        int count=1;
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(ch=='('){
+                stack.push(count++);
+                al.add(stack.peek());
+            }
+            else if(ch==')'){
+                al.add(stack.pop());
+            }
+            else {
+                continue;
+            }
+        }
+       int [] arr=new int[al.size()];
+       for(int i=0;i<al.size();i++){
+           arr[i]=al.get(i);
+       }
+     return arr;
+      
+    }
+}
