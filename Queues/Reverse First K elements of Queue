@@ -1,0 +1,23 @@
+import java.util.* ;
+
+import jdk.nashorn.internal.ir.ReturnNode;
+
+import java.io.*; 
+
+public class Solution 
+{
+  public static Queue<Integer> reverseElements(Queue<Integer> q, int k) 
+  {
+    Deque<Integer> queue=new ArrayDeque<>();
+    for(int i=0;i<k;i++){
+    queue.push(q.poll());
+    }
+    while(!queue.isEmpty()){
+      q.offer(queue.poll());
+    }
+    for(int i=0;i<q.size()-k;i++){
+      q.offer(q.poll());
+    }
+    return q;
+  }
+}
