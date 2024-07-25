@@ -1,0 +1,29 @@
+import java.util.*;
+public class Solution {
+		public static int[] firstNegative(int[] arr, int n, int k) {
+		ArrayDeque<Integer> queue=new ArrayDeque<>();
+		ArrayList<Integer> al=new ArrayList<>();
+		for(int i=0;i<n;i++){
+			while(!queue.isEmpty() && queue.peek()<=i-k){
+				queue.pop();
+			}
+			if(arr[i]<0){
+				queue.offer(i);
+			}
+
+			 if (i>=k-1){
+			   if(queue.isEmpty()){
+				   al.add(0);
+			   }
+			else{ 
+			al.add(arr[queue.peek()]);
+			}
+		  }
+		}
+		int [] result=new int[al.size()];
+		for(int i=0;i<al.size();i++){
+			result[i]=al.get(i);
+		}
+		return result;	
+	}
+}
