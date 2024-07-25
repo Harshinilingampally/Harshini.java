@@ -1,0 +1,16 @@
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+
+    public static Queue<Integer> reverseQueue(Queue<Integer> q) {
+          ArrayDeque<Integer> queue=new ArrayDeque<>();
+        while(!q.isEmpty()){
+          queue.push(q.poll());
+        }
+        while(!queue.isEmpty()){
+          q.offer(queue.poll());
+        }
+        return q;
+    }
+  }
