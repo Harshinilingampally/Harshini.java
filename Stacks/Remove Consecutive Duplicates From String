@@ -1,0 +1,21 @@
+import java.util.*;
+public class Solution 
+{
+    public static String removeConsecutive(StringBuilder str) 
+    {
+        Stack<Character> stack=new Stack<>();
+        stack.push(str.charAt(0));
+        for(int i=1;i<str.length();i++){
+            char ch=str.charAt(i);
+            if(stack.peek()!=ch){
+                stack.push(ch);
+            }
+        }
+        StringBuilder result=new StringBuilder();
+        while(!stack.isEmpty()){
+            result.append(stack.pop());
+        }
+        return result.reverse().toString();
+
+    }
+}
