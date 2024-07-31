@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+public class SpecialQueue {
+	ArrayList<Integer> al;
+	int size;
+	void init() {
+		al=new ArrayList<>();
+		size=0;
+	}
+	void pushFront(int val) {
+		al.add(0,val);
+		size++;
+	}
+	void pushBack(int val) {
+		al.add(val);
+		size++;
+
+	}
+	void pushMiddle(int val) {
+		int mid=size/2;
+		al.add(mid,val);
+		size++;
+	}
+	int popFront() {
+		if(size==0){
+			return -1;
+		}
+		int x=al.get(0);
+		al.remove(0);
+				size--;
+
+		return x;
+	}
+	int popBack() {
+		if(size==0){
+			return -1;
+		}
+		int y=al.get(size-1);
+		al.remove(size-1);
+				size--;
+
+		return y;
+	}
+	int popMiddle() {
+		if(size==0){
+			return -1;
+		}
+		int middle=(size-1)/2;
+		int z=al.get(middle);
+		al.remove(middle);
+				size--;
+		return  z;
+	}
+}
