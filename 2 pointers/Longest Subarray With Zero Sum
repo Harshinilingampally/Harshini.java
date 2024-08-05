@@ -1,0 +1,26 @@
+import java.util.HashMap;
+
+public class Solution {
+    public static int getLongestZeroSumSubarrayLength(int []arr){
+        int n=arr.length;
+        int l=0;
+        int r=0;
+        int sum=0;
+        int maxi=0;
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        while(l<n && r<n){
+            sum+=arr[r];
+            if(sum==0){
+                maxi=Math.max(maxi,r-l+1);
+            }
+               else if(hm.containsKey(sum)){
+                   maxi=Math.max(maxi,r-hm.get(sum));
+               }
+               else{
+                   hm.put(sum,r);
+               }
+             r++;
+            }
+        return maxi;
+    }
+}
