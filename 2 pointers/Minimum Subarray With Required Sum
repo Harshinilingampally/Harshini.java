@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+public class Solution 
+{
+	public static ArrayList<Integer> minSubarray(ArrayList<Integer> arr, int n, int x) 
+	{
+		ArrayList<Integer> al=new ArrayList<>();
+		int l=0;
+		int r=0;
+		int sum=0;
+        int mini=Integer.MAX_VALUE;
+		int leftEnd=-10;
+		int rightEnd=-10;
+			while(r<n){
+				sum+=arr.get(r);
+				while(sum>x && l<=r){
+				if(r-l+1 < mini){
+                  mini=r-l+1;
+				  leftEnd=l;
+				  rightEnd=r;
+				}
+				sum-=arr.get(l);
+				l++;
+			}
+			r++;
+		}
+		if(leftEnd!=-10 && rightEnd!=-10){
+		for(int i=leftEnd;i<=rightEnd;i++){
+			al.add(arr.get(i));
+		}
+	}
+			return al;
+}
+}
+ 
