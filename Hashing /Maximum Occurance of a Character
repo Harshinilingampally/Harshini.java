@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        HashMap<Character,Integer> hm=new HashMap<>();
+        HashMap<Character,Integer> firstOccur=new HashMap<>();
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+            hm.put(ch,hm.getOrDefault(ch,0)+1);
+            if(! firstOccur.containsKey(ch)){
+                firstOccur.put(ch,i);
+            }
+        }
+         char maxChar='\0';
+           int pos=Integer.MAX_VALUE;
+            int maxi=0;
+        for(Map.Entry<Character,Integer> entry:hm.entrySet()){
+            int currValue=entry.getValue();
+            int leftPos=firstOccur.get(entry.getKey());
+            if(currValue>maxi || (currValue==maxi && leftPos<pos) ){
+                maxi=currValue;
+                maxChar=entry.getKey();
+                pos=leftPos;
+            }
+        }
+        System.out.println(maxChar);
+    }
+}
