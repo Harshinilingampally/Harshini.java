@@ -1,0 +1,23 @@
+
+class Solution {
+    public static void func(Node root,ArrayList<ArrayList<Integer>> list,ArrayList<Integer> al){
+        if(root==null){
+            return;
+        }
+        al.add(root.data);
+        if(root.left==null && root.right==null){
+            list.add(new ArrayList<>(al));
+        }
+        else{
+            func(root.left,list,al);
+            func(root.right,list,al);
+        }
+        al.remove(al.size()-1);
+    }
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
+        ArrayList<Integer> al=new ArrayList<>();
+        func(root,list,al);
+        return list;
+    }
+}
