@@ -1,0 +1,29 @@
+class Solution {
+    public static void function(int N,ArrayList<String> ans,int count0,int count1,String str){
+        if(count1+count0==N){
+            ans.add(str);
+            return;
+        }
+        if(count1<N){
+            String str1=new String(str);
+            str1=str1+"1";
+            function(N,ans,count0,count1+1,str1);
+        }
+        
+        if(count0<count1){
+            String str2=new String(str);
+            str2=str2+"0";
+            function(N,ans,count0+1,count1,str2);
+        }    
+}
+    
+    ArrayList<String> NBitBinary(int N) {
+        int count1=0;
+        int count0=0;
+        ArrayList<String> ans=new ArrayList<>();
+        String str="";
+        function(N,ans,count0,count1,str);
+        return ans;
+    }
+    
+}
