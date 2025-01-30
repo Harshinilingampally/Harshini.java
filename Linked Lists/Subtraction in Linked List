@@ -1,0 +1,49 @@
+class Solution {
+
+    static int function(Node head){
+        Node temp=head;
+        StringBuilder sb=new StringBuilder();
+        while(temp!=null){
+            sb.append(temp.data);
+            temp=temp.next;
+        }
+        String str=sb.toString();
+        int value=Integer.parseInt(str);
+          return value;
+    }
+    
+    static Node reverse(Node head){
+        Node prev=null;
+        Node next=null;
+        Node curr=head;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+        }
+        
+    static Node construct(int value){
+    if(value==0) return new Node(0);
+      Node newNode=new Node(value%10);
+      value=value/10;
+      Node head=newNode;
+      Node temp=newNode;
+        while(value!=0){
+          newNode=new Node(value%10);
+            temp.next=newNode;
+            temp=newNode;
+            value=value/10;
+        }
+        return reverse(head);
+    }
+    
+    static Node subLinkedList(Node head1, Node head2) {
+        int value1=function(head1);
+        int value2=function(head2);
+        int result=Math.abs(value1-value2);
+        return construct(result);
+    }
+}
