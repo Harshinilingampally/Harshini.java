@@ -1,0 +1,21 @@
+class Solution {
+    public void function(String str,String pre,HashSet<String> res){
+        if(str.length()==0){
+            res.add(pre);
+            return;
+        }
+        else{
+            for(int i=0;i<str.length();i++){
+                String rem=str.substring(0,i)+str.substring(i+1);
+                function(rem,pre+str.charAt(i),res);
+            }
+        }
+    }
+    public ArrayList<String> findPermutation(String s) {
+        String pre="";
+        HashSet<String> res=new HashSet<>();
+        function(s,pre,res);
+        
+        return new ArrayList<>(res);
+    }
+}
