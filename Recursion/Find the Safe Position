@@ -1,0 +1,18 @@
+lass Solution {
+    public static int function(ArrayList<Integer> arr,int k,int prev){
+        if(arr.size()==1){
+            return arr.get(0);
+        }
+          prev=(prev+(k-1))%arr.size();
+            arr.remove(prev);
+          return function(arr,k,prev);
+    }
+    static int safePos(int n, int k) {
+        ArrayList<Integer> arr=new ArrayList();
+        for(int i=1;i<=n;i++){
+            arr.add(i);
+        }
+        int prev=0;
+       return function(arr,k,prev);
+    }
+};
