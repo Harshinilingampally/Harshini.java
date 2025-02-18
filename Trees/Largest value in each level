@@ -1,0 +1,28 @@
+class Solution
+{
+    public static int maxi=Integer.MIN_VALUE;
+    public  static void function(Queue<Node> queue,Node root,ArrayList<Integer> al){
+        if(root==null) return;
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int curLength=queue.size();
+            for(int i=0;i<curLength;i++){
+                Node temp=queue.poll();
+                if(temp.data > maxi){
+                    maxi=temp.data;
+                }
+                if(temp.left!=null) queue.add(temp.left);
+                if(temp.right!=null) queue.add(temp.right);
+            }
+            al.add(maxi);
+            maxi=Integer.MIN_VALUE;
+        }
+    }
+    public ArrayList<Integer> largestValues(Node root)
+    {
+        ArrayList<Integer> al=new ArrayList<>();
+        Queue<Node> queue =new LinkedList<>();
+        function(queue,root,al);
+        return al;
+    }
+}
