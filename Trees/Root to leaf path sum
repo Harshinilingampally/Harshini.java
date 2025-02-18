@@ -1,0 +1,13 @@
+class Solution {
+    public static boolean function(Node root,int target,int currentSum){
+        if(root==null) return false;
+         currentSum+=root.data;
+        if(root.right==null && root.left==null){
+            return currentSum==target;
+        }
+         return function(root.left,target,currentSum)||function(root.right,target,currentSum);
+    }
+    boolean hasPathSum(Node root, int target) {
+        return function(root,target,0);
+    }
+}
