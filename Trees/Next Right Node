@@ -1,0 +1,31 @@
+class Solution{
+    static void function(Node root,int key,ArrayList<Node> al,Queue<Node> queue){
+        if(root==null){
+            return;
+        }
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int curSize=queue.size();
+            for(int i=0;i<curSize;i++){
+                Node curr=queue.poll();
+                if(curr.data==key){
+                  if(i==curSize-1){
+                      al.add(new Node(-1));
+                  }
+                  else{
+                      al.add(queue.peek());
+                  }
+            }
+            if(curr.left!=null) queue.add(curr.left);
+            if(curr.right!=null) queue.add(curr.right);
+        }
+    }
+    }
+	Node nextRight(Node root, int key)
+    {
+		ArrayList<Node> al=new ArrayList<>();
+		Queue<Node> queue=new LinkedList<>();
+		function(root,key,al,queue);
+		return al.get(0);
+    }
+}
