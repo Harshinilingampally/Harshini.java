@@ -1,0 +1,19 @@
+class Solution{
+    public static void function(Node root,int depth,int [] maxi){
+        if(root==null) return;
+        if(depth%2!=0){
+            if(root.left==null && root.right==null){
+                maxi[0]=Math.max(maxi[0],depth);
+            }
+        }
+        function(root.left,depth+1,maxi);
+        function(root.right,depth+1,maxi);
+    }
+    public static int depthOfOddLeaf(Node root)
+    {
+        int [] maxi={0};
+        function(root,1,maxi);
+        return maxi[0];
+
+    }
+}
