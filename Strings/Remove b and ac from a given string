@@ -1,0 +1,22 @@
+class Solution
+{
+    public String stringFilter(String str) 
+    {
+      StringBuilder sb=new StringBuilder();
+      for(int i=0;i<str.length();i++){
+          char ch1=str.charAt(i);
+          if(ch1=='b'){
+              continue;
+          }
+          else if(ch1=='a' && i+1 < str.length() && str.charAt(i+1)=='c') {
+              i++;
+              continue;
+          }
+          else{
+              
+              sb.append(ch1);
+          }
+      }
+    return sb.toString();
+    }
+}
