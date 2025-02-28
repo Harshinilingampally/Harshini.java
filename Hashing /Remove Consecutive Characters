@@ -1,0 +1,16 @@
+class Solution {
+    public String removeConsecutiveCharacter(String s) {
+        HashSet<Character> hs=new HashSet<>();
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(!hs.contains(ch)){
+                if(!hs.isEmpty())
+                hs.clear();
+                hs.add(ch);
+                sb.append(ch);
+            }
+        }
+        return sb.toString();
+    }
+}
