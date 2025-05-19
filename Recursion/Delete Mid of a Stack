@@ -1,0 +1,26 @@
+class Solution {
+    public static boolean check=false;
+    public static void function(Stack<Integer> stack,int size){
+        if(check==true && !stack.isEmpty()){
+            stack.pop();
+            check=false;
+        }
+        if(!stack.isEmpty()){
+            int temp=stack.pop();
+        if(Math.floor((size+1)/2) == stack.size()){
+            if(size%2!=0){
+                stack.pop();
+            }
+            else{
+                check=true;
+            }
+        }
+        function(stack,size);
+        stack.push(temp);
+        }
+    }
+    public void deleteMid(Stack<Integer> s) {
+        int size=s.size();
+        function(s,size);
+    }
+}
