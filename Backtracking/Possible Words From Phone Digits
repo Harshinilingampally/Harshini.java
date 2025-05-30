@@ -1,0 +1,23 @@
+class Solution {
+    public static void function(String [] words,int index,String curr,ArrayList<String> ans){
+        if(index==words.length){
+            ans.add(curr);
+            return;
+        }
+        for(int i=0;i<words[index].length();i++){
+            function(words,index+1,curr+words[index].charAt(i),ans);
+        }
+    }
+    public ArrayList<String> possibleWords(int[] arr) {
+         String [] arr2={"1","0","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","*","0","#"};
+         String [] words=new String[arr.length];
+         for(int i=0;i<arr.length;i++){
+             words[i]=arr2[arr[i]];
+         }
+         ArrayList<String> ans=new ArrayList<>();
+         String curr=new String();
+         function(words,0,curr,ans);
+         
+         return ans;
+    }
+}
